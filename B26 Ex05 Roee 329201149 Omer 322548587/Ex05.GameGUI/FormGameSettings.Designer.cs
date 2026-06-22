@@ -73,7 +73,7 @@
             this.m_CheckBoxPlayer2.TabIndex = 2;
             this.m_CheckBoxPlayer2.Text = "Player 2:";
             this.m_CheckBoxPlayer2.UseVisualStyleBackColor = true;
-            this.m_TextBoxPlayer2.TextChanged += new System.EventHandler(this.checkBoxPlayer2_CheckedChanged);
+            this.m_CheckBoxPlayer2.CheckStateChanged += new System.EventHandler(this.checkBoxPlayer2_CheckStateChanged);
             // 
             // textBoxPlayer1
             // 
@@ -81,7 +81,7 @@
             this.m_TextBoxPlayer1.Name = "m_TextBoxPlayer1";
             this.m_TextBoxPlayer1.Size = new System.Drawing.Size(139, 20);
             this.m_TextBoxPlayer1.TabIndex = 3;
-            this.m_TextBoxPlayer2.TextChanged += new System.EventHandler(this.textBoxPlayer1_TextChanged);
+            this.m_TextBoxPlayer1.TextChanged += new System.EventHandler(this.textBoxPlayer1_TextChanged);
             // 
             // textBoxPlayer2
             // 
@@ -167,7 +167,7 @@
             0,
             0,
             0});
-            this.m_NumericUpDownRows.ValueChanged += new System.EventHandler(this.numericUpDownCols_ValueChanged);
+            this.m_NumericUpDownCols.ValueChanged += new System.EventHandler(this.numericUpDownCols_ValueChanged);
             // 
             // buttonStart
             // 
@@ -178,7 +178,7 @@
             this.m_ButtonStart.TabIndex = 10;
             this.m_ButtonStart.Text = "Start!";
             this.m_ButtonStart.UseVisualStyleBackColor = true;
-            this.m_TextBoxPlayer2.TextChanged += new System.EventHandler(this.buttonStart_Click);
+            this.m_ButtonStart.Click += new System.EventHandler(this.buttonStart_Click);
             // 
             // FormGameSettings
             // 

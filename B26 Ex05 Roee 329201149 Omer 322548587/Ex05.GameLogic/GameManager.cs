@@ -17,7 +17,7 @@ namespace Ex05.GameLogic
         private readonly Random r_Random;
 
         /* =============== Properties =============== */
-        public bool TwoPlayers { get; }
+        public bool IsTwoPlayersMode { get; }
 
         public Player Winner { get; private set; }
 
@@ -31,27 +31,35 @@ namespace Ex05.GameLogic
             }
         }
 
-        public ushort Player1Score => r_Player1.Score;
-        public ushort Player2Score => r_Player2.Score;
+        public Player Player1
+        {
+            get
+            {
+                return r_Player1;
+            }
+        }
+
+        public Player Player2
+        {
+            get
+            {
+                return r_Player2;
+            }
+        }
 
 
         /* =============== Constructor(s) =============== */
 
-        public GameManager(int i_BoardSize, bool i_TwoPlayers)
+        public GameManager(GameSettings i_GameSettings)
         {
-            r_Board = new Board(i_BoardSize);
-            TwoPlayers = i_TwoPlayers;
-            r_Player1 = new Player(Board.eCellState.X);
-            r_Player2 = new Player(Board.eCellState.O);
+            r_Board = new Board(i_GameSettings.BoardSize);
+            IsTwoPlayersMode = i_GameSettings.IsTwoPlayersMode;
+            r_Player1 = new Player(i_GameSettings.Player1Name, Board.eCellState.X);
+            r_Player2 = new Player(i_GameSettings.Player2Name, Board.eCellState.O);
             r_Random = new Random();
             Winner = null;
             CurrentPlayer = r_Player1;
             NewGame();
-        }
-
-        public GameManager() : this(3, false)
-        {
-
         }
 
         /* =============== Public Methods =============== */

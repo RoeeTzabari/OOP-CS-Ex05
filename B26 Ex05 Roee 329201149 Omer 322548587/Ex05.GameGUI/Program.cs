@@ -1,8 +1,10 @@
 using System;
 using System.Collections.Generic;
+using System.Drawing.Printing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Ex05.GameGUI
 {
@@ -12,7 +14,13 @@ namespace Ex05.GameGUI
     {
         static void Main(string[] args)
         {
-            
+            FormGameSettings gameSettings = new FormGameSettings();
+            gameSettings.ShowDialog();
+            if (gameSettings.DialogResult == DialogResult.OK)
+            {
+                FormGame game = new FormGame(gameSettings.GetGameSettings());
+                game.StartGame();
+            }
         }
     }
 }
