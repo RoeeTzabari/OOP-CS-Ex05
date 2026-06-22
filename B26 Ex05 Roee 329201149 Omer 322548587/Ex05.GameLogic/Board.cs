@@ -89,7 +89,7 @@ namespace Ex05.GameLogic
             if (isValidInput && r_Matrix[i_Row, i_Col] == eCellState.Empty)
             {
                 r_Matrix[i_Row, i_Col] = i_CellState;
-                success = removeCellFromEmptyCellsList(new Cell(i_Row, i_Col));
+                success = EmptyCells.Remove(new Cell(i_Row, i_Col));
             }
 
             return success;
@@ -105,24 +105,6 @@ namespace Ex05.GameLogic
             }
 
             return cellState;
-        }
-
-        /* =============== Private Helper Methods =============== */
-        private bool removeCellFromEmptyCellsList(Cell i_Cell)
-        {
-            bool success = false;
-
-            for(int i = 0; i < EmptyCells.Count; i++)
-            {
-                if (EmptyCells[i].Equals(i_Cell))
-                {
-                    EmptyCells.RemoveAt(i);
-                    success = true;
-                    break;
-                }
-            }
-
-            return success;
         }
     }
 }

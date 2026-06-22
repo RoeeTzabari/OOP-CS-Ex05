@@ -36,21 +36,23 @@ namespace Ex05.GameLogic
 
 
         /* =============== Constructor(s) =============== */
-        public GameManager() : this(3, false)
-        {
-            r_Random = new Random();
-        }
+
         public GameManager(int i_BoardSize, bool i_TwoPlayers)
         {
             r_Board = new Board(i_BoardSize);
             TwoPlayers = i_TwoPlayers;
             r_Player1 = new Player(Board.eCellState.X);
             r_Player2 = new Player(Board.eCellState.O);
+            r_Random = new Random();
             Winner = null;
             CurrentPlayer = r_Player1;
             NewGame();
         }
 
+        public GameManager() : this(3, false)
+        {
+
+        }
 
         /* =============== Public Methods =============== */
 
@@ -96,9 +98,8 @@ namespace Ex05.GameLogic
 
             if (checkForSequence(out Board.eCellState symbol))
             {
-                Winner = (symbol == r_Player1.Symbol) ? r_Player1 : r_Player2;
-                Player actualWinner = (Winner == r_Player1) ? r_Player2 : r_Player1;
-                actualWinner.Score++;
+                Winner = (symbol == r_Player1.Symbol) ? r_Player2 : r_Player1;
+                Winner.Score++;
                 hasSequence = true;
             }
             return hasSequence || r_Board.IsFull;
