@@ -4,9 +4,11 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.Remoting.Channels;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.VisualStyles;
 using Ex05.GameLogic;
 
 namespace Ex05.GameGUI
@@ -59,11 +61,24 @@ namespace Ex05.GameGUI
                 for(int col = 0; col < m_BoardSize; col++)
                 {
                     Button cellButton = new Button();
-                    cellButton.Dock = DockStyle.Fill;
 
+                    cellButton.Dock = DockStyle.Fill;
+                    cellButton.Click += new EventHandler(buttonBoardCells_Click);
+                    cellButton.Tag = new Board.Cell(row, col);
                     m_TableLayoutPanel.Controls.Add(cellButton, col, row);
                 }
             }
+        }
+
+        // TODO: Add GameOver check, Scoreboard update, GameOver form that appears when the game is over, ...
+        private void buttonBoardCells_Click(object sender, EventArgs e)
+        {
+            Button button = sender as Button;
+
+            button.Text = m_Game.CurrentPlayer.Symbol.ToString();
+            button.Enabled = false;
+            m_Game.MakeMove((Board.Cell)button.Tag);
+            m_Game.SwitchTurn();
         }
     }
 }

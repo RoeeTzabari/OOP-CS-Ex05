@@ -35,9 +35,9 @@
             // m_LabelScoreBoard
             // 
             this.m_LabelScoreBoard.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.m_LabelScoreBoard.Location = new System.Drawing.Point(0, 415);
+            this.m_LabelScoreBoard.Location = new System.Drawing.Point(0, 753);
             this.m_LabelScoreBoard.Name = "m_LabelScoreBoard";
-            this.m_LabelScoreBoard.Size = new System.Drawing.Size(516, 32);
+            this.m_LabelScoreBoard.Size = new System.Drawing.Size(926, 32);
             this.m_LabelScoreBoard.TabIndex = 1;
             this.m_LabelScoreBoard.Text = "[Score Board]";
             this.m_LabelScoreBoard.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -55,14 +55,14 @@
             this.m_TableLayoutPanel.RowCount = 2;
             this.m_TableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.m_TableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.m_TableLayoutPanel.Size = new System.Drawing.Size(516, 379);
+            this.m_TableLayoutPanel.Size = new System.Drawing.Size(926, 700);
             this.m_TableLayoutPanel.TabIndex = 2;
             // 
             // FormGame
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(516, 447);
+            this.ClientSize = new System.Drawing.Size(926, 785);
             this.Controls.Add(this.m_LabelScoreBoard);
             this.Controls.Add(this.m_TableLayoutPanel);
             this.Name = "FormGame";
