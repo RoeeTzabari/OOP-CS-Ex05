@@ -70,7 +70,6 @@ namespace Ex05.GameGUI
             }
         }
 
-        // TODO: Add GameOver check, Scoreboard update, GameOver form that appears when the game is over, ...
         private void buttonBoardCells_Click(object sender, EventArgs e)
         {
             Button button = sender as Button;
@@ -78,7 +77,88 @@ namespace Ex05.GameGUI
             button.Text = m_Game.CurrentPlayer.Symbol.ToString();
             button.Enabled = false;
             m_Game.MakeMove((Board.Cell)button.Tag);
-            m_Game.SwitchTurn();
+
+            if (m_Game.IsGameOver())
+            {
+                handleGameOver();
+            }
+            else
+            {
+                m_Game.SwitchTurn();
+                if (!m_Game.IsTwoPlayersMode)
+                {
+                    computerMove();
+                }
+            }
+        }
+
+        private void computerMove()
+        {
+            if (m_Game.AutoMakeMove(out Board.Cell cell))
+            {
+                Button button = m_TableLayoutPanel.GetControlFromPosition(cell.Col, cell.Row) as Button;
+                button.Text = m_Game.CurrentPlayer.Symbol.ToString();
+                button.Enabled = false;
+
+                if (m_Game.IsGameOver())
+                {
+                    handleGameOver();
+                }
+                else
+                {
+                    m_Game.SwitchTurn();
+                }
+            }
+        }
+
+        private void handleGameOver()
+        {
+            updateScoreBoard();
+
+            string title;
+            string message;
+
+            if (m_Game.Winner != null)
+            {
+                title = "A Win!";
+                message = string.Format("The winner is {0}!{1}Would you like to play another round?", m_Game.Winner.Name, Environment.NewLine);
+            }
+            else
+            {
+                title = "A Tie!";
+                message = string.Format("Tie!{0}Would you like to play another round?", Environment.NewLine);
+            }
+
+            DialogResult result = MessageBox.Show(message, title, MessageBoxButtons.YesNo);
+            if (result == DialogResult.Yes)
+            {
+                m_Game.NewGame();
+                resetBoard();
+            }
+            else
+            {
+                this.Close();
+            }
+        }
+
+        private void resetBoard()
+        {
+            foreach (Control control in m_TableLayoutPanel.Controls)
+            {
+                Button button = control as Button;
+                if (button != null)
+                {
+                    button.Text = string.Empty;
+                    button.Enabled = true;
+                }
+            }
+
+            updateScoreBoard();
+
+            if (!m_Game.IsTwoPlayersMode && m_Game.CurrentPlayer == m_Game.Player2)
+            {
+                computerMove();
+            }
         }
     }
 }
